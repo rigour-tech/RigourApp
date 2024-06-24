@@ -1,5 +1,14 @@
 <resources>
     <string name="app_name">Rigour</string>
     <!-- TODO: Remove or change this placeholder text -->
+    <string name="first_introduction">Fastest Link to the Best Hands</string>
+    <string name="first_text">We understand how crucial your construction\nprojects are, so we provide the platform that\nconnects you quickly with the top experts\n
+        in the industry</string>
+    <string name="second_introduction">Trust and Quality Assurance</string>
+    <string name="second_text">Access a pool of our meticulously selected,\ntrained, and verified service providers through\nrenowned skills acquisitions</string>
+    <string name="third_introduction">Services Anytime,\nAnywhere</string>
+    <string name="third_text">Streamlined onboarding process,\nefficient matching algorithms, real-time booking\nand job scheduling.</string>
+
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

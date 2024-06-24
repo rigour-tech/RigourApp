@@ -1,22 +1,20 @@
-package com.dash.rigour
+package com.dash.rigour.fragment
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+import androidx.fragment.app.Fragment
+import com.dash.rigour.ARG_PARAM1
+import com.dash.rigour.ARG_PARAM2
+import com.dash.rigour.R
 
 /**
  * A simple [Fragment] subclass.
- * Use the [SplashScreen.newInstance] factory method to
+ * Use the [SecondScreen.newInstance] factory method to
  * create an instance of this fragment.
  */
-class SplashScreen : Fragment() {
+class SecondScreen : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -34,7 +32,7 @@ class SplashScreen : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_splash_screen, container, false)
+        return inflater.inflate(R.layout.fragment_second_screen, container, false)
     }
 
     companion object {
@@ -44,12 +42,12 @@ class SplashScreen : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment SplashScreen.
+         * @return A new instance of fragment SecondScreen.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            SplashScreen().apply {
+            SecondScreen().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".onboarding.ViewPagerFragment">
+
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/app_name"
+        android:layout_marginTop="17dp"
+        android:textSize="32sp"
+        android:fontFamily="@font/electromagneticlungs"
+        android:textColor="@color/brand_color"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/signup"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textView" />
+    
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/login"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:background="@drawable/btnlogin"
+        android:text="Login"
+        android:textAllCaps="false"
+        android:textSize="17sp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/poppins_regular"
+        app:layout_constraintEnd_toStartOf="@id/signup"
+        android:layout_marginBottom="22dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/signup"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:background="@drawable/btnsignup"
+        android:text="Sign Up"
+        android:textAllCaps="false"
+        android:textSize="17sp"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="@id/login"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/login" />
+        
+</androidx.constraintlayout.widget.ConstraintLayout>
