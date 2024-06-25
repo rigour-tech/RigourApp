@@ -63,7 +63,11 @@
         android:id="@+id/forgetPassword"
         android:name="com.dash.rigour.fragment.ForgetPassword"
         android:label="fragment_forget_password"
-        tools:layout="@layout/fragment_forget_password" />
+        tools:layout="@layout/fragment_forget_password" >
+        <action
+            android:id="@+id/action_forgetPassword_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
     <fragment
         android:id="@+id/usersInfo"
         android:name="com.dash.rigour.fragment.UsersInfo"
