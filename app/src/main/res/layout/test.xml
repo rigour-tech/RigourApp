@@ -113,7 +113,7 @@
         android:id="@+id/forgetPsw"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/poppins_regular"
+        android:fontFamily="@font/poppins_medium"
         android:text="Forgot Password"
         android:textColor="#0060F0"
         android:textSize="14sp"
@@ -128,163 +128,12 @@
         android:layout_marginHorizontal="22dp"
         android:layout_marginTop="17dp"
         android:textAllCaps="false"
-        android:background="@drawable/btn_started"
-        android:fontFamily="@font/poppins_semibold"
+        android:background="@drawable/btnsignup"
+        android:fontFamily="@font/poppins_medium"
         android:text="LogIn"
         android:textColor="@color/white"
         android:textSize="14sp"
         app:layout_constraintTop_toBottomOf="@+id/forgetPsw" />
-
-    <TextView
-        android:id="@+id/textView9"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="42dp"
-        android:layout_marginRight="22dp"
-        android:fontFamily="@font/poppins_medium"
-        android:text="Don't have an account?"
-        android:textColor="@color/black"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="@+id/getStarted"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/getStarted" />
-
-    <TextView
-        android:id="@+id/createAccount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginEnd="7dp"
-        android:layout_marginRight="7dp"
-        android:fontFamily="@font/poppins_medium"
-        android:text="Create Account"
-        android:textColor="@color/green"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView9"
-        app:layout_constraintStart_toEndOf="@+id/textView9"
-        app:layout_constraintTop_toTopOf="@+id/textView9" />
-
-
-    <ImageView
-        android:id="@+id/right_line"
-        android:layout_width="148dp"
-        android:layout_height="1dp"
-        android:layout_marginTop="22dp"
-        android:src="@drawable/line"
-        app:layout_constraintStart_toStartOf="@id/email"
-        app:layout_constraintTop_toBottomOf="@id/textView9" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:text="or"
-        android:textAlignment="center"
-        app:layout_constraintBottom_toBottomOf="@id/right_line"
-        app:layout_constraintEnd_toStartOf="@+id/imageView"
-        app:layout_constraintStart_toEndOf="@id/right_line"
-        app:layout_constraintTop_toTopOf="@id/right_line" />
-
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="148dp"
-        android:layout_height="1dp"
-        android:src="@drawable/line"
-        app:layout_constraintBottom_toBottomOf="@id/right_line"
-        app:layout_constraintEnd_toEndOf="@id/getStarted"
-        app:layout_constraintTop_toTopOf="@id/right_line" />
-
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/google"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="17dp"
-        android:layout_marginTop="22dp"
-        android:background="@drawable/name_bg"
-        android:padding="2dp"
-        app:layout_constraintEnd_toStartOf="@id/google"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/right_line">
-
-
-        <ImageView
-            android:id="@+id/apple_image"
-            android:layout_width="22dp"
-            android:layout_height="42dp"
-            android:layout_marginEnd="128dp"
-            android:layout_marginRight="58dp"
-            android:src="@drawable/google"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-
-        <TextView
-            android:id="@+id/test_"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginLeft="4dp"
-            android:fontFamily="@font/poppins_medium"
-            android:text="Sign In With Google"
-            android:textColor="@color/black"
-            android:textSize="14sp"
-            app:layout_constraintBottom_toBottomOf="@id/apple_image"
-            app:layout_constraintStart_toEndOf="@id/apple_image"
-            app:layout_constraintTop_toTopOf="@id/apple_image" />
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/apple"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="17dp"
-        android:layout_marginTop="12dp"
-        android:background="@drawable/name_bg"
-        android:padding="2dp"
-        app:layout_constraintTop_toBottomOf="@+id/google">
-
-
-        <ImageView
-            android:id="@+id/google_image"
-            android:layout_width="22dp"
-            android:layout_height="42dp"
-            android:layout_marginEnd="128dp"
-            android:layout_marginRight="128dp"
-            android:src="@drawable/facebook"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-
-        <TextView
-            android:id="@+id/test"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginLeft="12dp"
-            android:fontFamily="@font/poppins_medium"
-            android:text="Sign In With Apple"
-            android:textColor="@color/black"
-            android:textSize="14sp"
-            app:layout_constraintBottom_toBottomOf="@id/google_image"
-            app:layout_constraintStart_toEndOf="@id/google_image"
-            app:layout_constraintTop_toTopOf="@id/google_image" />
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
