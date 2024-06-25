@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "644113509390",
+    "project_id": "adminrigour",
+    "storage_bucket": "adminrigour.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:644113509390:android:250b41edc61c98f7a5205f",
+        "android_client_info": {
+          "package_name": "com.dash.rigour"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC8QyFR-40U2njtWcHiZYPnZIdNVcNO4hU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
