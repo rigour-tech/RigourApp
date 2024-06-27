@@ -15,12 +15,13 @@
         android:layout_height="match_parent"
         android:layout_marginBottom="22dp">
 
-        <ImageView
+        <com.makeramen.roundedimageview.RoundedImageView
             android:id="@+id/productImage"
             android:layout_width="310dp"
             android:layout_height="170dp"
             android:layout_marginTop="7dp"
-            android:background="@drawable/userimage"
+            android:src="@drawable/welder"
+            app:riv_corner_radius="7dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

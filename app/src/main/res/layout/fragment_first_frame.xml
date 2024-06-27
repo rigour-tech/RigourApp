@@ -8,12 +8,18 @@
     tools:context=".onboarding.FirstFrame">
 
 
-    <ImageView
+    <com.makeramen.roundedimageview.RoundedImageView
         android:id="@+id/imageView3"
         android:layout_width="279dp"
-        android:layout_height="379dp"
-        android:src="@drawable/userimage"
+        android:layout_height="299dp"
+        android:scaleType="fitCenter"
+        app:riv_corner_radius="12dp"
+        android:background="@drawable/welder"
+        app:riv_mutate_background="true"
         android:layout_marginTop="32dp"
+        app:riv_tile_mode="mirror"
+        app:riv_border_color="@color/brand_color"
+        app:riv_border_width="2dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
