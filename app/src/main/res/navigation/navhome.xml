@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navhome"
+    app:startDestination="@id/dashboardFragment2">
+
+    <fragment
+        android:id="@+id/dashboardFragment2"
+        android:name="com.dash.rigour.fragment.DashboardFragment"
+        android:label="fragment_dashboard"
+        tools:layout="@layout/fragment_dashboard" >
+        <action
+            android:id="@+id/action_dashboardFragment2_to_addProjects"
+            app:destination="@id/addProjects" />
+    </fragment>
+    <fragment
+        android:id="@+id/addProjects"
+        android:name="com.dash.rigour.fragment.AddProjects"
+        android:label="fragment_add_projects"
+        tools:layout="@layout/fragment_add_projects" >
+        <action
+            android:id="@+id/action_addProjects_to_dashboardFragment2"
+            app:destination="@id/dashboardFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/wallet"
+        android:name="com.dash.rigour.fragment.Wallet"
+        android:label="fragment_wallet"
+        tools:layout="@layout/fragment_wallet" />
+    <fragment
+        android:id="@+id/profile"
+        android:name="com.dash.rigour.fragment.Profile"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
+</navigation>

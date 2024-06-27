@@ -26,7 +26,6 @@ class SecondScreen : Fragment() {
         val view = binding.root
 
         Handler().postDelayed({
-            slideRight()
             Navigation.findNavController(view)
                 .navigate(R.id.action_secondScreen_to_viewPagerFragment)
 
@@ -36,9 +35,6 @@ class SecondScreen : Fragment() {
         return view
     }
 
-    private fun slideRight() {
-        val animationZoomOut = AnimationUtils.loadAnimation(requireContext(), R.anim.anim)
-        binding.imageView2.startAnimation(animationZoomOut)
-    }
+
 
 }

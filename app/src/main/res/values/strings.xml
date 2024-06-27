@@ -9,6 +9,17 @@
     <string name="third_introduction">Services Anytime,\nAnywhere</string>
     <string name="third_text">Streamlined onboarding process,\nefficient matching algorithms, real-time booking\nand job scheduling.</string>
 
+    <string-array name="ProjectType">
+        <item>Maintenance and Repairs</item>
+        <item>Renovation and Remodeling</item>
+        <item>Specialty Projects</item>
+        <item>Residential Construction</item>
+        <item>New Commercial Construction</item>
+        <item>New Industrial Construction</item>
+        <item>New Institutional Construction</item>
+        <item>New Infrastructure Projects</item>
+        <item>General Maintenance Services</item>
+    </string-array>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

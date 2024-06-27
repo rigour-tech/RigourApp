@@ -3,17 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav"
-    app:startDestination="@id/splashScreen">
+    app:startDestination="@id/secondScreen">
 
-    <fragment
-        android:id="@+id/splashScreen"
-        android:name="com.dash.rigour.fragment.SplashScreen"
-        android:label="fragment_splash_screen"
-        tools:layout="@layout/fragment_splash_screen" >
-        <action
-            android:id="@+id/action_splashScreen_to_secondScreen"
-            app:destination="@id/secondScreen" />
-    </fragment>
     <fragment
         android:id="@+id/secondScreen"
         android:name="com.dash.rigour.fragment.SecondScreen"
@@ -21,7 +12,8 @@
         tools:layout="@layout/fragment_second_screen" >
         <action
             android:id="@+id/action_secondScreen_to_viewPagerFragment"
-            app:destination="@id/viewPagerFragment" />
+            app:destination="@id/viewPagerFragment"/>
+
     </fragment>
     <fragment
         android:id="@+id/viewPagerFragment"
@@ -73,4 +65,9 @@
         android:name="com.dash.rigour.fragment.UsersInfo"
         android:label="fragment_users_info"
         tools:layout="@layout/fragment_users_info" />
+    <fragment
+        android:id="@+id/dashboardFragment"
+        android:name="com.dash.rigour.fragment.DashboardFragment"
+        android:label="fragment_dashboard"
+        tools:layout="@layout/fragment_dashboard" />
 </navigation>

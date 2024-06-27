@@ -54,5 +54,6 @@ dependencies {
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     implementation("com.tbuonomo:dotsindicator:4.3")
     implementation("de.hdodenhof:circleimageview:3.1.0")
+    implementation("com.makeramen:roundedimageview:2.3.0")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 }

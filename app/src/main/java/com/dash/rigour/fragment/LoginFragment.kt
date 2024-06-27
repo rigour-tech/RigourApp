@@ -1,5 +1,6 @@
 package com.dash.rigour.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.InputFilter
 import android.util.Patterns
@@ -10,6 +11,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import com.dash.rigour.R
+import com.dash.rigour.activity.HomeActivity
 import com.dash.rigour.databinding.FragmentLoginBinding
 import com.google.firebase.auth.FirebaseAuth
 
@@ -59,11 +61,14 @@ class LoginFragment : Fragment() {
                                     "Login Successfully",
                                     Toast.LENGTH_SHORT
                                 ).show()
+                            val intent = Intent(requireContext(), HomeActivity::class.java)
+                            activity?.startActivity(intent)
 
-                        } else {
-                            Toast.makeText(requireContext(), "Verify Email", Toast.LENGTH_SHORT)
-                                .show()
                         }
+
+
+                    }.addOnFailureListener {
+                        Toast.makeText(requireContext(), "Cant Login", Toast.LENGTH_SHORT).show()
                     }
             }
             binding.signUp.setOnClickListener {
