@@ -60,7 +60,7 @@ class SignUpFragment : Fragment() {
             ) {
                 Toast.makeText(
                     requireContext(),
-                    "Password Must Contain letter and number",
+                    "Password Must Contain Small letters, UpperCase Letters and Numbers",
                     Toast.LENGTH_SHORT
                 ).show()
                 binding.psw.requestFocus()
