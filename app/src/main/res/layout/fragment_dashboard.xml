@@ -123,10 +123,11 @@
                 app:layout_constraintStart_toEndOf="@id/image1"
                 app:layout_constraintTop_toTopOf="parent"
                 app:riv_corner_radius="12dp" />
+
             <com.makeramen.roundedimageview.RoundedImageView
                 android:layout_width="260dp"
                 android:layout_height="150dp"
-                android:src="@drawable/plumber"
+                android:src="@drawable/roofers"
                 app:layout_constraintStart_toEndOf="@id/image1"
                 app:layout_constraintTop_toTopOf="parent"
                 app:riv_corner_radius="12dp" />
