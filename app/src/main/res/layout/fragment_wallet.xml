@@ -5,7 +5,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/dashboard_bg"
     tools:context=".fragment.Wallet">
 
     <TextView
@@ -111,18 +110,20 @@
         android:layout_height="50dp"
         android:layout_marginTop="23dp"
         android:background="@drawable/circle_bg"
-        android:padding="10dp"
+        android:padding="12dp"
         android:src="@drawable/send"
         app:layout_constraintEnd_toStartOf="@id/receive"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Started" />
+        app:layout_constraintTop_toBottomOf="@+id/Started"
+        app:tint="@color/white" />
 
     <ImageView
         android:id="@+id/receive"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:background="@drawable/circle_bg"
-        android:padding="10dp"
+        android:padding="12dp"
+        app:tint="@color/white"
         android:src="@drawable/recieve"
         app:layout_constraintBottom_toBottomOf="@+id/send"
         app:layout_constraintEnd_toStartOf="@id/topUp"
@@ -135,13 +136,13 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:background="@drawable/circle_bg"
-        android:padding="10dp"
+        android:padding="12dp"
         android:src="@drawable/baseline_add_24"
         app:layout_constraintBottom_toBottomOf="@+id/receive"
         app:layout_constraintEnd_toStartOf="@id/invoice"
         app:layout_constraintStart_toEndOf="@id/receive"
         app:layout_constraintTop_toTopOf="@id/send"
-        app:tint="@color/black" />
+        app:tint="@color/white" />
 
 
     <ImageView
@@ -149,8 +150,9 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:background="@drawable/circle_bg"
-        android:padding="10dp"
+        android:padding="12dp"
         android:src="@drawable/invoice"
+        app:tint="@color/white"
         app:layout_constraintBottom_toBottomOf="@+id/topUp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/topUp"
@@ -199,9 +201,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="History"
+        android:fontFamily="@font/poppins_medium"
         android:textColor="@color/black"
         android:textSize="14sp"
-        android:layout_marginTop="22dp"
+        android:layout_marginTop="12dp"
         app:layout_constraintStart_toStartOf="@+id/walletCard"
         app:layout_constraintTop_toBottomOf="@+id/getStarted" />
 
@@ -210,6 +213,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="View aLL"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        android:fontFamily="@font/poppins_medium"
         app:layout_constraintBottom_toBottomOf="@+id/historyTxt"
         app:layout_constraintEnd_toEndOf="@+id/getStarted"
         app:layout_constraintTop_toTopOf="@+id/historyTxt" />
@@ -220,7 +226,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="32dp"
-        android:layout_marginTop="22dp"
+        android:layout_marginTop="12dp"
         android:visibility="invisible"
         android:background="@drawable/btnsignup"
         android:fontFamily="@font/poppins_medium"
@@ -229,6 +235,18 @@
         android:textColor="@color/white"
         android:textSize="14sp"
         app:layout_constraintTop_toBottomOf="@+id/textView18" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/historyRecyclerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="12dp"
+        tools:listitem="@layout/transaction"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/historyTxt" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
