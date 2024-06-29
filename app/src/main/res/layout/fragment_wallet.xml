@@ -1,17 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/dashboard_bg"
     tools:context=".fragment.Wallet">
+
+    <TextView
+        android:id="@+id/textView20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_medium"
+        android:textColor="@color/black"
+        android:text="Invoice"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="@+id/invoice"
+        app:layout_constraintStart_toStartOf="@+id/invoice"
+        app:layout_constraintTop_toTopOf="@+id/textView21" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/walletCard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="22dp"
-        android:layout_marginTop="22dp"
+        android:layout_marginHorizontal="32dp"
+        android:layout_marginTop="32dp"
+        app:cardBackgroundColor="@color/brand_color"
+        app:cardCornerRadius="12dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -20,9 +36,199 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <ImageView
+                android:layout_width="10dp"
+                android:layout_height="109dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="22dp"
+                android:layout_marginTop="22dp"
+                android:fontFamily="@font/poppins_light"
+                android:text="Current Balance"
+                android:textColor="@color/white"
+                android:textSize="17sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/balance"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="137dp"
+                android:layout_height="69dp"
+                android:layout_marginTop="4dp"
+                app:endIconMinSize="2dp"
+                app:endIconMode="password_toggle"
+                app:endIconTint="@color/white"
+                app:layout_constraintStart_toStartOf="@+id/textView16"
+                app:layout_constraintTop_toBottomOf="@id/textView16"
+                app:startIconTint="@color/white">
+
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/brand_color"
+                    android:drawableTint="@color/white"
+                    android:fontFamily="@font/poppins_medium"
+                    android:inputType="none"
+                    android:text="₦80000.000"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+            </com.google.android.material.textfield.TextInputLayout>
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/Started"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="32dp"
+        android:layout_marginTop="12dp"
+        android:visibility="invisible"
+        android:background="@drawable/btnsignup"
+        android:fontFamily="@font/poppins_medium"
+        android:text="Create Account"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        app:layout_constraintTop_toBottomOf="@+id/walletCard" />
+
+    <ImageView
+        android:id="@+id/send"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="23dp"
+        android:background="@drawable/circle_bg"
+        android:padding="10dp"
+        android:src="@drawable/send"
+        app:layout_constraintEnd_toStartOf="@id/receive"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Started" />
+
+    <ImageView
+        android:id="@+id/receive"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@drawable/circle_bg"
+        android:padding="10dp"
+        android:src="@drawable/recieve"
+        app:layout_constraintBottom_toBottomOf="@+id/send"
+        app:layout_constraintEnd_toStartOf="@id/topUp"
+        app:layout_constraintStart_toEndOf="@id/send"
+        app:layout_constraintTop_toTopOf="@id/send" />
+
+
+    <ImageView
+        android:id="@+id/topUp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@drawable/circle_bg"
+        android:padding="10dp"
+        android:src="@drawable/baseline_add_24"
+        app:layout_constraintBottom_toBottomOf="@+id/receive"
+        app:layout_constraintEnd_toStartOf="@id/invoice"
+        app:layout_constraintStart_toEndOf="@id/receive"
+        app:layout_constraintTop_toTopOf="@id/send"
+        app:tint="@color/black" />
+
+
+    <ImageView
+        android:id="@+id/invoice"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@drawable/circle_bg"
+        android:padding="10dp"
+        android:src="@drawable/invoice"
+        app:layout_constraintBottom_toBottomOf="@+id/topUp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/topUp"
+        app:layout_constraintTop_toTopOf="@+id/topUp" />
+
+    <TextView
+        android:id="@+id/textView18"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="Send"
+        android:fontFamily="@font/poppins_medium"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="@+id/send"
+        app:layout_constraintStart_toStartOf="@+id/send"
+        app:layout_constraintTop_toBottomOf="@+id/send" />
+
+    <TextView
+        android:id="@+id/textView19"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Receive"
+        android:fontFamily="@font/poppins_medium"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView18"
+        app:layout_constraintEnd_toEndOf="@+id/receive"
+        app:layout_constraintStart_toStartOf="@+id/receive"
+        app:layout_constraintTop_toTopOf="@+id/textView18" />
+
+    <TextView
+        android:id="@+id/textView21"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Top Up"
+        android:fontFamily="@font/poppins_medium"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="@+id/topUp"
+        app:layout_constraintStart_toStartOf="@+id/topUp"
+        app:layout_constraintTop_toTopOf="@+id/textView19" />
+
+    <TextView
+        android:id="@+id/historyTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="History"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        android:layout_marginTop="22dp"
+        app:layout_constraintStart_toStartOf="@+id/walletCard"
+        app:layout_constraintTop_toBottomOf="@+id/getStarted" />
+
+    <TextView
+        android:id="@+id/textViewTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="View aLL"
+        app:layout_constraintBottom_toBottomOf="@+id/historyTxt"
+        app:layout_constraintEnd_toEndOf="@+id/getStarted"
+        app:layout_constraintTop_toTopOf="@+id/historyTxt" />
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/getStarted"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="32dp"
+        android:layout_marginTop="22dp"
+        android:visibility="invisible"
+        android:background="@drawable/btnsignup"
+        android:fontFamily="@font/poppins_medium"
+        android:text="Create Account"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        app:layout_constraintTop_toBottomOf="@+id/textView18" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
