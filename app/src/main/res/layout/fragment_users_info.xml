@@ -13,7 +13,7 @@
                 android:id="@+id/imageView5"
                 android:layout_width="250dp"
                 android:layout_height="30dp"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="2dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -23,7 +23,7 @@
                 android:id="@+id/textView5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="22dp"
+                android:layout_marginTop="2dp"
                 android:fontFamily="@font/poppins_medium"
                 android:text="Lets Know You"
                 android:textColor="@color/black"
@@ -36,18 +36,17 @@
         android:id="@+id/email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
         android:fontFamily="@font/poppins_medium"
-        android:text="UserName"
+        android:text="First Name"
         android:textColor="@color/black"
         android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="@+id/userName_"
+        app:layout_constraintStart_toStartOf="@+id/firstName_"
         app:layout_constraintTop_toBottomOf="@id/userImage" />
 
 
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/userName_"
+                android:id="@+id/firstName_"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -59,18 +58,62 @@
                 app:layout_constraintTop_toBottomOf="@id/email">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/userNmae_et"
+                    android:id="@+id/firstName_et"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/textinput_bg"
-                    android:hint="UserName"
+                    android:hint="First Name"
+                    android:fontFamily="@font/poppins_medium"
+                    android:inputType="text"
                     android:textColor="@color/black"
                     android:textColorHint="#3F4045"
                     android:textSize="12sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
 
-            <TextView
+    <TextView
+        android:id="@+id/lastName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_medium"
+        android:text="Last Name"
+        android:textColor="@color/black"
+        android:layout_marginTop="17dp"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/LastName_"
+        app:layout_constraintTop_toBottomOf="@id/firstName_" />
+
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/LastName_"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="32dp"
+        android:layout_marginTop="12dp"
+        app:hintAnimationEnabled="false"
+        app:cursorColor="@color/black"
+        app:hintEnabled="false"
+        app:layout_constraintTop_toBottomOf="@id/lastName">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/lastName_et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/textinput_bg"
+            android:fontFamily="@font/poppins_medium"
+            android:hint="Last Name"
+            android:inputType="text"
+            android:textColor="@color/black"
+            android:textColorHint="#3F4045"
+            android:textSize="12sp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
+    <TextView
                 android:id="@+id/password"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -80,7 +123,7 @@
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="@+id/email"
-                app:layout_constraintTop_toBottomOf="@id/userName_" />
+                app:layout_constraintTop_toBottomOf="@id/LastName_" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/psw"
@@ -101,6 +144,7 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/textinput_bg"
                     android:hint="08052187724"
+                    android:fontFamily="@font/poppins_medium"
                     android:inputType="number"
                     android:textColor="@color/black"
                     android:textColorHint="#3F4045"
@@ -151,7 +195,7 @@
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/userImage"
         android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_height="50dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:civ_border_color="@color/black"
         app:civ_border_width="1dp"
