@@ -15,6 +15,7 @@ import com.dash.rigour.databinding.FragmentAddProjectsBinding
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 
 
 class AddProjects : Fragment() {
@@ -33,6 +34,7 @@ class AddProjects : Fragment() {
 
         auth = FirebaseAuth.getInstance()
         val uid = auth.currentUser?.uid.toString()
+        databaseReference = FirebaseDatabase.getInstance().getReference("ProjectsAdded")
 
 
         val languages = resources.getStringArray(R.array.ProjectType)
