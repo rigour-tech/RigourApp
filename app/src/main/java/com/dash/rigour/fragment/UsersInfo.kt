@@ -46,7 +46,7 @@ class UsersInfo : Fragment() {
                 Toast.makeText(requireContext(), "Input Your Last Name", Toast.LENGTH_SHORT).show()
                 binding.lastName.requestFocus()
             }
-            if (!Patterns.PHONE.matcher(binding.phoneNumberEt.text.toString()).matches()) {
+            if (binding.phoneNumberEt.text.toString().isEmpty()) {
                 Toast.makeText(requireContext(), "Input Your Correct Number", Toast.LENGTH_SHORT)
                     .show()
                 binding.psw.requestFocus()

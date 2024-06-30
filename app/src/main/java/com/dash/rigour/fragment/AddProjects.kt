@@ -42,6 +42,13 @@ class AddProjects : Fragment() {
         val autoCompleteTv = binding.dropMenu
         autoCompleteTv.setAdapter(arrayAdapter)
 
+        binding.arrowBack.setOnClickListener {
+
+            Navigation.findNavController(view)
+                .navigate(R.id.action_addProjects_to_dashboardFragment2)
+
+        }
+
 
         binding.postJob.setOnClickListener {
             if (isSpinnerEmpty(binding.dropMenu)) {
