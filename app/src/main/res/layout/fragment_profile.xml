@@ -113,7 +113,7 @@
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/payment_method"
+        android:id="@+id/termsAndPrivacy"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="22dp"
@@ -129,7 +129,7 @@
             android:layout_marginStart="22dp"
             android:layout_marginTop="3dp"
             android:fontFamily="@font/poppins_medium"
-            android:text="Payment Methods"
+            android:text="Privacy Policy"
             android:textColor="@color/black"
             android:textSize="14sp"
             android:textStyle="bold"
@@ -141,7 +141,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_medium"
-            android:text="How would you like to withdraw"
+            android:text="Know Our Terms &amp; Conditions"
             android:textColor="#949494"
             android:textSize="10sp"
             app:layout_constraintStart_toStartOf="@+id/textView10_"
@@ -166,7 +166,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:src="@drawable/line"
-        app:layout_constraintTop_toBottomOf="@id/payment_method" />
+        app:layout_constraintTop_toBottomOf="@id/termsAndPrivacy" />
 
 
     <androidx.constraintlayout.widget.ConstraintLayout

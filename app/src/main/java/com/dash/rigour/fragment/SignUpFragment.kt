@@ -76,9 +76,11 @@ class SignUpFragment : Fragment() {
                             user!!.sendEmailVerification()
                             Toast.makeText(
                                 requireContext(),
-                                "Account Created, Check Your Email",
+                                "Account Created,",
                                 Toast.LENGTH_SHORT
                             ).show()
+                            Navigation.findNavController(view)
+                                .navigate(R.id.action_signUpFragment_to_usersInfo)
                         } else {
                             Toast.makeText(
                                 requireContext(),
