@@ -12,8 +12,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="22dp">
+        android:layout_height="match_parent">
 
         <com.makeramen.roundedimageview.RoundedImageView
             android:id="@+id/productImage"
@@ -157,19 +156,55 @@
             android:textAllCaps="false"
             android:textColor="#008787"
             android:textSize="17sp"
-            app:layout_constraintTop_toBottomOf="@id/constraint2" />
+            app:layout_constraintTop_toBottomOf="@id/textView17" />
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="17dp"
+            android:layout_marginTop="22dp"
+            android:background="@drawable/bg"
+            android:visibility="invisible"
+            android:text="Apply Here"
+            android:textAllCaps="false"
+            android:textColor="#008787"
+            android:textSize="17sp"
+            app:layout_constraintTop_toBottomOf="@id/apply" />
 
         <TextView
             android:id="@+id/textView13"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="PProject Description"
+            android:text="Project Description"
             android:layout_marginTop="12dp"
             android:textSize="14sp"
             android:textColor="@color/black"
             android:fontFamily="@font/poppins_medium"
             app:layout_constraintStart_toStartOf="@+id/textView9"
             app:layout_constraintTop_toBottomOf="@+id/constraint" />
+
+        <TextView
+            android:id="@+id/textView17"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:text="Project Type :"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:fontFamily="@font/poppins_medium"
+            app:layout_constraintStart_toStartOf="@+id/textView13"
+            app:layout_constraintTop_toBottomOf="@+id/constraint2" />
+
+        <TextView
+            android:id="@+id/projectType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:fontFamily="@font/poppins_medium"
+            app:layout_constraintBottom_toBottomOf="@id/textView17"
+            app:layout_constraintStart_toEndOf="@+id/textView13"
+            app:layout_constraintTop_toTopOf="@+id/textView17" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

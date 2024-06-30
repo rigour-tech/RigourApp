@@ -67,11 +67,12 @@ class AddProjects : Fragment() {
                 databaseReference.child(uid).setValue(jobPosted).addOnCompleteListener {
                     if (it.isSuccessful) {
                         showSnackbar("Job Posted")
-                        Navigation.findNavController(view).navigate(R.id.)
+                        Navigation.findNavController(view)
+                            .navigate(R.id.action_addProjects_to_dashboardFragment2)
                     }
                 }.addOnFailureListener {
 
-                    showSnackbar("Account Not Created")
+                    showSnackbar("Job Not Posted")
 
                 }
 
