@@ -33,7 +33,7 @@ class AddProjects : Fragment() {
         val view = binding.root
 
         auth = FirebaseAuth.getInstance()
-        val uid = auth.currentUser?.uid.toString()
+        val uid = auth.currentUser?.uid
         databaseReference = FirebaseDatabase.getInstance().getReference("ProjectsAdded")
 
 
@@ -66,28 +66,28 @@ class AddProjects : Fragment() {
                 Toast.makeText(requireContext(), "Tile Cant Be Empty", Toast.LENGTH_LONG).show()
             } else {
                 val projectType = binding.dropMenu.text.toString()
-                val projectDescription = binding.dropMenu.text.toString()
-                val projectTitle = binding.dropMenu.text.toString()
-                val workersNeeded = binding.dropMenu.text.toString()
+                val projectDescription = binding.descriptionEt.text.toString()
+                val projectTitle = binding.titleEt.text.toString()
+                val workersNeeded = binding.workersNeededEt.text.toString()
 
                 val jobPosted =
                     JobsInfo(projectType, projectDescription, projectTitle, workersNeeded)
 
-                databaseReference.child(uid).setValue(jobPosted).addOnCompleteListener {
-                    if (it.isSuccessful) {
-                        showSnackbar("Job Posted")
-                        Navigation.findNavController(view)
-                            .navigate(R.id.action_addProjects_to_dashboardFragment2)
+                    databaseReference.push().setValue(jobPosted).addOnCompleteListener {
+                        if (it.isSuccessful) {
+                            showSnackbar("Job Posted")
+                            Navigation.findNavController(view)
+                                .navigate(R.id.action_addProjects_to_dashboardFragment2)
+                        }
+                    }.addOnFailureListener {
+
+                        showSnackbar("Job Not Posted")
+
                     }
-                }.addOnFailureListener {
 
-                    showSnackbar("Job Not Posted")
 
-                }
 
             }
-
-
         }
 
 

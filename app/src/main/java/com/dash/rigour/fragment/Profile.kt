@@ -47,18 +47,20 @@ class Profile : Fragment() {
 
             }
 
-            binding.termsAndPrivacy.setOnClickListener {
-                val urlIntent = Intent(
-                    Intent.ACTION_VIEW,
-                    Uri.parse("https://docs.google.com/document/d/1mGCz_Z_dpLdjd9hQ6srb2xWH2TYgzyEgP6mRmlG1Lyc/edit")
-                )
-                activity?.startActivity(urlIntent)
-            }
 
 
+
+        }
+        binding.termsAndPrivacy.setOnClickListener {
+            val urlIntent = Intent(
+                Intent.ACTION_VIEW,
+                Uri.parse("https://gideonjones.blogspot.com/2024/06/terms-and-conditions-for-payment-on.html")
+            )
+            activity?.startActivity(urlIntent)
         }
 
 
         return view
     }
+
 }

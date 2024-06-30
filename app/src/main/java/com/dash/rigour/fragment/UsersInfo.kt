@@ -3,7 +3,6 @@ package com.dash.rigour.fragment
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Patterns
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,6 +14,7 @@ import com.dash.rigour.databinding.FragmentUsersInfoBinding
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 
 
 class UsersInfo : Fragment() {
@@ -31,9 +31,11 @@ class UsersInfo : Fragment() {
 
         _binding = FragmentUsersInfoBinding.inflate(inflater, container, false)
         val view = binding.root
+        databaseReference = FirebaseDatabase.getInstance().getReference("UsersInfo")
+
         auth = FirebaseAuth.getInstance()
 
-        val uid = auth.currentUser?.uid.toString()
+        val uid = auth.currentUser?.uid
 
         binding.BtnContinue.setOnClickListener {
 
@@ -66,17 +68,18 @@ class UsersInfo : Fragment() {
 
 
                 val users = UserInfo(firstName, lastName, phoneNumber)
+                if (uid != null) {
+                    databaseReference.child(uid).setValue(users).addOnCompleteListener {
+                        if (it.isSuccessful) {
+                            showSnackbar("Account Successfully Created")
+                            val intent = Intent(requireContext(), HomeActivity::class.java)
+                            activity?.startActivity(intent)
+                        }
+                    }.addOnFailureListener {
 
-                databaseReference.child(uid).setValue(users).addOnCompleteListener {
-                    if (it.isSuccessful) {
-                        showSnackbar("Account Successfully Created")
-                        val intent = Intent(requireContext(), HomeActivity::class.java)
-                        activity?.startActivity(intent)
+                        showSnackbar("Account Not Created")
+
                     }
-                }.addOnFailureListener {
-
-                    showSnackbar("Account Not Created")
-
                 }
             }
         }

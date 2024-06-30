@@ -13,12 +13,13 @@ import com.dash.rigour.R
 import com.dash.rigour.adapter.JobPostedAdapter
 import com.dash.rigour.data.JobsInfo
 import com.dash.rigour.databinding.FragmentDashboardBinding
+import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.database
 import java.util.Calendar
 
 
@@ -27,7 +28,8 @@ class DashboardFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var database: DatabaseReference
     private lateinit var auth: FirebaseAuth
-    private lateinit var userArrayList: ArrayList<JobsInfo>
+    private lateinit var userArrayList: MutableList<JobsInfo>
+    private lateinit var taskAdapter: JobPostedAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,7 +41,7 @@ class DashboardFragment : Fragment() {
         val view = binding.root
 
         auth = FirebaseAuth.getInstance()
-        database = FirebaseDatabase.getInstance().reference.child("ProjectsAdded")
+        database = Firebase.database.reference.child("ProjectsAdded")
 
 
         val sharedPreferences = activity?.getSharedPreferences("info", Context.MODE_PRIVATE)
@@ -51,17 +53,18 @@ class DashboardFragment : Fragment() {
             Navigation.findNavController(view)
                 .navigate(R.id.action_dashboardFragment2_to_addProjects)
         }
-
         check()
-        userArrayList = arrayListOf<JobsInfo>()
         getUserData()
 
         return view
     }
 
     private fun getUserData() {
+        userArrayList = mutableListOf()
+        taskAdapter = JobPostedAdapter(userArrayList)
+        binding.recyclerView.setHasFixedSize(true)
         binding.recyclerView.layoutManager =
-            LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
+            LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
 
         database.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -72,12 +75,16 @@ class DashboardFragment : Fragment() {
                     for (userSnapshot in snapshot.children) {
 
                         val user = userSnapshot.getValue(JobsInfo::class.java)
-                        userArrayList.add(user!!)
+
+                        if (user != null) {
+                            userArrayList.add(user)
+                        }
 
                     }
-                    binding.recyclerView.adapter = JobPostedAdapter(userArrayList)
+                    binding.recyclerView.adapter = taskAdapter
 
                 }
+                taskAdapter.notifyDataSetChanged()
 
 
             }
@@ -92,6 +99,7 @@ class DashboardFragment : Fragment() {
 
 
     }
+
 
     private fun check() {
 

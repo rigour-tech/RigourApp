@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.dash.rigour.R
 import com.dash.rigour.data.JobsInfo
 
-class JobPostedAdapter(private val list: ArrayList<JobsInfo>) :
+class JobPostedAdapter(private val list: MutableList<JobsInfo>) :
     RecyclerView.Adapter<JobPostedAdapter.MyViewHolder>() {
 
 
