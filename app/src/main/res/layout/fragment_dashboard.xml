@@ -117,7 +117,7 @@
                     android:id="@+id/image1"
                     android:layout_width="260dp"
                     android:layout_height="150dp"
-                    android:src="@drawable/electrician"
+                    android:src="@drawable/roofers"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:riv_corner_radius="12dp" />
@@ -134,7 +134,7 @@
                 <com.makeramen.roundedimageview.RoundedImageView
                     android:layout_width="260dp"
                     android:layout_height="150dp"
-                    android:src="@drawable/roofers"
+                    android:src="@drawable/electrician"
                     app:layout_constraintStart_toEndOf="@id/image1"
                     app:layout_constraintTop_toTopOf="parent"
                     app:riv_corner_radius="12dp" />
@@ -165,16 +165,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/addProject"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="12dp"
-            android:layout_marginBottom="22dp"
-            android:backgroundTint="@color/brand_color"
-            android:src="@drawable/baseline_add_24"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+
 
         <TextView
             android:id="@+id/lastName"
@@ -188,6 +179,88 @@
             app:layout_constraintBottom_toBottomOf="@+id/greetingsName"
             app:layout_constraintStart_toEndOf="@+id/greetingsName"
             app:layout_constraintTop_toTopOf="@+id/greetingsName" />
+
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/add_fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:src="@drawable/baseline_add_24"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            app:fabSize="normal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- Floating action button for add alarm -->
+        <!-- Make sure that you are constraining this
+             button to the parent button -->
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/add_alarm_fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            app:fabSize="normal"
+            app:layout_constraintBottom_toTopOf="@+id/add_fab"
+            app:layout_constraintEnd_toEndOf="@+id/add_fab"
+            app:layout_constraintStart_toStartOf="@+id/add_fab"
+            app:srcCompat="@drawable/baseline_email_24" />
+
+        <!-- Action name text for the add alarm button -->
+        <!-- Make sure that you are constraining this Text to
+             the add Alarm FAB button -->
+        <TextView
+            android:id="@+id/add_alarm_action_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:textColor="@color/brand_color"
+            android:textStyle="bold"
+            android:fontFamily="@font/poppins_medium"
+            android:textSize="12sp"
+            android:text="Message"
+            app:layout_constraintBottom_toBottomOf="@+id/add_alarm_fab"
+            app:layout_constraintEnd_toStartOf="@+id/add_alarm_fab"
+            app:layout_constraintTop_toTopOf="@+id/add_alarm_fab" />
+
+        <!-- Floating action button for add person -->
+        <!-- Make sure that you are constraining this
+             button to the add Alarm FAB button -->
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/add_person_fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:elevation="0dp"
+            app:borderWidth="6dp"
+            app:backgroundTint="@color/teal_200"
+            android:tint="@color/white"
+            app:fabSize="normal"
+            app:layout_constraintBottom_toTopOf="@+id/add_alarm_fab"
+            app:layout_constraintEnd_toEndOf="@+id/add_alarm_fab"
+            app:layout_constraintStart_toStartOf="@+id/add_alarm_fab"
+            app:srcCompat="@drawable/baseline_post_add_24" />
+
+        <!-- Action name text for the add person button -->
+        <!-- Make sure that you are constraining this Text
+             to the add Person FAB button -->
+        <TextView
+            android:id="@+id/add_person_action_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:text="Post A Job"
+            android:textStyle="bold"
+            android:textColor="@color/brand_color"
+            android:fontFamily="@font/poppins_medium"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/add_person_fab"
+            app:layout_constraintEnd_toStartOf="@+id/add_person_fab"
+            app:layout_constraintTop_toTopOf="@+id/add_person_fab" />
+
+
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

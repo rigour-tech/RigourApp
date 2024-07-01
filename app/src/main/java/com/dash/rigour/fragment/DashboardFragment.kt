@@ -6,10 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.dash.rigour.R
 import com.dash.rigour.adapter.JobPostedAdapter
 import com.dash.rigour.data.JobsInfo
 import com.dash.rigour.databinding.FragmentDashboardBinding
@@ -49,10 +47,7 @@ class DashboardFragment : Fragment() {
 
         binding.lastName.text = lastName
 
-        binding.addProject.setOnClickListener {
-            Navigation.findNavController(view)
-                .navigate(R.id.action_dashboardFragment2_to_addProjects)
-        }
+       
         check()
         getUserData()
 
