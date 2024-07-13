@@ -6,8 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.dash.rigour.R
 import com.dash.rigour.adapter.JobPostedAdapter
 import com.dash.rigour.data.JobsInfo
 import com.dash.rigour.databinding.FragmentDashboardBinding
@@ -28,10 +30,11 @@ class DashboardFragment : Fragment() {
     private lateinit var auth: FirebaseAuth
     private lateinit var userArrayList: MutableList<JobsInfo>
     private lateinit var taskAdapter: JobPostedAdapter
+    var fabVisible = false
+
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
 
@@ -47,7 +50,71 @@ class DashboardFragment : Fragment() {
 
         binding.lastName.text = lastName
 
-       
+        fabVisible = false
+
+        binding.addFab.setOnClickListener {
+            // on below line we are checking
+            // fab visible variable.
+            if (!fabVisible) {
+
+                // if its false we are displaying home fab
+                // and settings fab by changing their
+                // visibility to visible.
+                binding.message.show()
+                binding.addPost.show()
+
+                // on below line we are setting
+                // their visibility to visible.
+                binding.message.visibility = View.VISIBLE
+                binding.addPost.visibility = View.VISIBLE
+
+                // on below line we are checking image icon of add fab
+                binding.addFab.setImageDrawable(resources.getDrawable(R.drawable.baseline_close_24))
+
+                // on below line we are changing
+                // fab visible to true
+                fabVisible = true
+            } else {
+
+                // if the condition is true then we
+                // are hiding home and settings fab
+                binding.message.hide()
+                binding.addPost.hide()
+
+                // on below line we are changing the
+                // visibility of home and settings fab
+                binding.message.visibility = View.GONE
+                binding.addPost.visibility = View.GONE
+
+                // on below line we are changing image source for add fab
+                binding.addFab.setImageDrawable(resources.getDrawable(R.drawable.baseline_add_24))
+
+                // on below line we are changing
+                // fab visible to false.
+                fabVisible = false
+            }
+        }
+
+        // on below line we are adding
+        // click listener for our home fab
+        binding.message.setOnClickListener {
+            // on below line we are displaying a toast message.
+        }
+
+        // on below line we are adding on
+        // click listener for settings fab
+        binding.addPost.setOnClickListener {
+            // on below line we are displaying a toast message
+
+            Navigation.findNavController(view)
+                .navigate(R.id.action_dashboardFragment2_to_addProjects)
+
+
+        }
+
+
+
+
         check()
         getUserData()
 

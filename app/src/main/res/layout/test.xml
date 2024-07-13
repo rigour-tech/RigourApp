@@ -20,7 +20,7 @@
     <!-- Make sure that you are constraining this
          button to the parent button -->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/add_alarm_fab"
+        android:id="@+id/message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
@@ -42,15 +42,15 @@
         android:fontFamily="@font/poppins_medium"
         android:textSize="12sp"
         android:text="Message"
-        app:layout_constraintBottom_toBottomOf="@+id/add_alarm_fab"
-        app:layout_constraintEnd_toStartOf="@+id/add_alarm_fab"
-        app:layout_constraintTop_toTopOf="@+id/add_alarm_fab" />
+        app:layout_constraintBottom_toBottomOf="@+id/message"
+        app:layout_constraintEnd_toStartOf="@+id/message"
+        app:layout_constraintTop_toTopOf="@+id/message" />
 
     <!-- Floating action button for add person -->
     <!-- Make sure that you are constraining this
          button to the add Alarm FAB button -->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/add_person_fab"
+        android:id="@+id/addPost"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
@@ -59,9 +59,9 @@
         app:backgroundTint="@color/teal_200"
         android:tint="@color/white"
         app:fabSize="normal"
-        app:layout_constraintBottom_toTopOf="@+id/add_alarm_fab"
-        app:layout_constraintEnd_toEndOf="@+id/add_alarm_fab"
-        app:layout_constraintStart_toStartOf="@+id/add_alarm_fab"
+        app:layout_constraintBottom_toTopOf="@+id/message"
+        app:layout_constraintEnd_toEndOf="@+id/message"
+        app:layout_constraintStart_toStartOf="@+id/message"
         app:srcCompat="@drawable/baseline_post_add_24" />
 
     <!-- Action name text for the add person button -->
@@ -76,9 +76,9 @@
         android:textColor="@color/black"
         android:fontFamily="@font/poppins_medium"
         android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="@+id/add_person_fab"
-        app:layout_constraintEnd_toStartOf="@+id/add_person_fab"
-        app:layout_constraintTop_toTopOf="@+id/add_person_fab" />
+        app:layout_constraintBottom_toBottomOf="@+id/addPost"
+        app:layout_constraintEnd_toStartOf="@+id/addPost"
+        app:layout_constraintTop_toTopOf="@+id/addPost" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
