@@ -8,6 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
+import com.dash.rigour.R
 import com.dash.rigour.activity.HomeActivity
 import com.dash.rigour.data.UserInfo
 import com.dash.rigour.databinding.FragmentUsersInfoBinding
@@ -31,11 +33,12 @@ class UsersInfo : Fragment() {
 
         _binding = FragmentUsersInfoBinding.inflate(inflater, container, false)
         val view = binding.root
-        databaseReference = FirebaseDatabase.getInstance().getReference("UsersInfo")
 
         auth = FirebaseAuth.getInstance()
 
-        val uid = auth.currentUser?.uid
+        auth = FirebaseAuth.getInstance()
+
+        val uid = auth.currentUser?.uid.toString()
 
         binding.BtnContinue.setOnClickListener {
 
@@ -67,20 +70,33 @@ class UsersInfo : Fragment() {
                 val phoneNumber = binding.phoneNumberEt.text.toString()
 
 
-                val users = UserInfo(firstName, lastName, phoneNumber)
-                if (uid != null) {
-                    databaseReference.child(uid).setValue(users).addOnCompleteListener {
-                        if (it.isSuccessful) {
-                            showSnackbar("Account Successfully Created")
-                            val intent = Intent(requireContext(), HomeActivity::class.java)
-                            activity?.startActivity(intent)
-                        }
-                    }.addOnFailureListener {
 
-                        showSnackbar("Account Not Created")
+                databaseReference =
+                    FirebaseDatabase.getInstance().getReference("UsersInfo").child(uid)
+
+                val hashMap: HashMap<String, String> = HashMap()
+                hashMap.put("userId", uid)
+                hashMap.put("firstName", binding.firstNameEt.text.toString())
+                hashMap.put("LastName", binding.lastNameEt.text.toString())
+                hashMap.put("profileImage", "")
+
+                databaseReference.setValue(hashMap)
+
+                    .addOnCompleteListener {
+
+                        if (it.isSuccessful) {
+
+                            showSnackbar("Name Saved Successfully")
+                         val intent = Intent(requireContext(),HomeActivity::class.java)
+                            activity?.startActivity(intent)
+
+
+                        } else {
+                            if (!it.isSuccessful)
+                                showSnackbar("Name Not Saved, Try Again!")
+                        }
 
                     }
-                }
             }
         }
 

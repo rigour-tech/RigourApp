@@ -33,15 +33,15 @@ class MessageAdapter(private val context: ChatActivity, private val userList: Ar
 
         val user = userList[position]
         holder.txtUserName.text = user.firstName
-/*
+
         Glide.with(context).load(user.userImage).placeholder(R.drawable.profile).into(holder.image)
-*/
+
 
         holder.layoutUser.setOnClickListener {
             val intent: Intent = Intent(context, MessageActivity::class.java)
-/*
+
             intent.putExtra("userId", user.userId)
-*/
+
             intent.putExtra("userName", user.firstName)
             context.startActivity(intent)
         }

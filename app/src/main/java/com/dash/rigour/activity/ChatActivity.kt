@@ -12,7 +12,9 @@ import com.dash.rigour.R
 import com.dash.rigour.data.FirebaseService
 import com.dash.rigour.data.User
 import com.dash.rigour.data.UserInfo
+
 import com.dash.rigour.databinding.ActivityChatBinding
+import com.dash.rigour.fragment.DashboardFragment
 import com.example.myfirsttask.adapter.MessageAdapter
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -53,7 +55,7 @@ class ChatActivity : AppCompatActivity() {
 
 
         binding.imgBack.setOnClickListener {
-            val intent = Intent(applicationContext, HomeActivity::class.java)
+            val intent = Intent(applicationContext, DashboardFragment::class.java)
             startActivity(intent)
         }
 
@@ -92,8 +94,7 @@ class ChatActivity : AppCompatActivity() {
                 for (dataSnapShot: DataSnapshot in snapshot.children) {
                     val user = dataSnapShot.getValue(UserInfo::class.java)
 
-
-                    if (user!!.equals(firebase.uid)) {
+                    if (!user!!.userId.equals(firebase.uid)) {
 
                         userList.add(user)
                     }
