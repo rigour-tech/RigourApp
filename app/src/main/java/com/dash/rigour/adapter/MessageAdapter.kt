@@ -12,9 +12,10 @@ import com.dash.rigour.R
 import com.dash.rigour.activity.ChatActivity
 import com.dash.rigour.activity.MessageActivity
 import com.dash.rigour.data.User
+import com.dash.rigour.data.UserInfo
 import de.hdodenhof.circleimageview.CircleImageView
 
-class MessageAdapter(private val context: ChatActivity, private val userList: ArrayList<User>) :
+class MessageAdapter(private val context: ChatActivity, private val userList: ArrayList<UserInfo>) :
     RecyclerView.Adapter<MessageAdapter.ViewHolder>() {
 
 
@@ -31,13 +32,17 @@ class MessageAdapter(private val context: ChatActivity, private val userList: Ar
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
         val user = userList[position]
-        holder.txtUserName.text = user.userName
+        holder.txtUserName.text = user.firstName
+/*
         Glide.with(context).load(user.userImage).placeholder(R.drawable.profile).into(holder.image)
+*/
 
         holder.layoutUser.setOnClickListener {
             val intent: Intent = Intent(context, MessageActivity::class.java)
+/*
             intent.putExtra("userId", user.userId)
-            intent.putExtra("userName", user.userName)
+*/
+            intent.putExtra("userName", user.firstName)
             context.startActivity(intent)
         }
 

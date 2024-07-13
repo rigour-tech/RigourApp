@@ -11,9 +11,8 @@ import com.bumptech.glide.Glide
 import com.dash.rigour.R
 import com.dash.rigour.data.FirebaseService
 import com.dash.rigour.data.User
-
+import com.dash.rigour.data.UserInfo
 import com.dash.rigour.databinding.ActivityChatBinding
-import com.dash.rigour.fragment.DashboardFragment
 import com.example.myfirsttask.adapter.MessageAdapter
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -28,13 +27,17 @@ import com.google.firebase.messaging.FirebaseMessaging
 class ChatActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityChatBinding
-    var userList = ArrayList<User>()
+    var userList = ArrayList<UserInfo>()
+    private lateinit var auth: FirebaseAuth
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityChatBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        auth = FirebaseAuth.getInstance()
+        val uid = auth.currentUser?.uid
 
 
         FirebaseService.sharedPref = getSharedPreferences(
@@ -50,7 +53,7 @@ class ChatActivity : AppCompatActivity() {
 
 
         binding.imgBack.setOnClickListener {
-            val intent = Intent(applicationContext, DashboardFragment::class.java)
+            val intent = Intent(applicationContext, HomeActivity::class.java)
             startActivity(intent)
         }
 
@@ -87,9 +90,10 @@ class ChatActivity : AppCompatActivity() {
                 }
 
                 for (dataSnapShot: DataSnapshot in snapshot.children) {
-                    val user = dataSnapShot.getValue(User::class.java)
+                    val user = dataSnapShot.getValue(UserInfo::class.java)
 
-                    if (!user!!.userId.equals(firebase.uid)) {
+
+                    if (user!!.equals(firebase.uid)) {
 
                         userList.add(user)
                     }
@@ -108,3 +112,5 @@ class ChatActivity : AppCompatActivity() {
 
 
 }
+
+
