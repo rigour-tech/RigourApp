@@ -1,6 +1,5 @@
-package com.example.myfirsttask.model
+package com.dash.rigour.data
 
-import com.example.myfirsttask.employeedata.EmployeeName
 
 data class User(var userId: String = "", val userName: String = "", val userImage: String = "") {
 }

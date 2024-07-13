@@ -1,6 +1,7 @@
 package com.dash.rigour.fragment
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,7 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.dash.rigour.R
+import com.dash.rigour.activity.ChatActivity
 import com.dash.rigour.adapter.JobPostedAdapter
 import com.dash.rigour.data.JobsInfo
 import com.dash.rigour.databinding.FragmentDashboardBinding
@@ -99,6 +101,11 @@ class DashboardFragment : Fragment() {
         // click listener for our home fab
         binding.message.setOnClickListener {
             // on below line we are displaying a toast message.
+
+            val intent = Intent(requireContext(), ChatActivity::class.java)
+            activity?.startActivity(intent)
+
+
         }
 
         // on below line we are adding on

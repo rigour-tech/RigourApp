@@ -54,11 +54,11 @@ dependencies {
     implementation("com.makeramen:roundedimageview:2.3.0")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
     //firebase dependencies
-    implementation("com.google.firebase:firebase-analytics:17.5.0")
-    implementation("com.google.firebase:firebase-database:19.3.1")
-    implementation("com.google.firebase:firebase-core:17.5.0")
-    implementation("com.google.firebase:firebase-auth:19.3.2")
-    implementation("com.google.firebase:firebase-storage:19.1.1")
+    implementation("com.google.firebase:firebase-analytics:22.0.2")
+    implementation("com.google.firebase:firebase-database:21.0.0")
+    implementation("com.google.firebase:firebase-core:21.1.1")
+    implementation("com.google.firebase:firebase-auth:23.0.0")
+    implementation("com.google.firebase:firebase-storage:21.0.0")
 
     //material design library
     implementation("com.google.android.material:material:1.2.0")

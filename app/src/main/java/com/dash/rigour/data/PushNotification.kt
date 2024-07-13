@@ -1,4 +1,4 @@
-package com.codingwithme.firebasechat.model
+package com.dash.rigour.data
 
 data class PushNotification(
     var data:NotificationData,
