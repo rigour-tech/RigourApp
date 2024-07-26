@@ -11,7 +11,6 @@ import com.bumptech.glide.Glide
 import com.dash.rigour.R
 import com.dash.rigour.activity.ChatActivity
 import com.dash.rigour.activity.MessageActivity
-import com.dash.rigour.data.User
 import com.dash.rigour.data.UserInfo
 import de.hdodenhof.circleimageview.CircleImageView
 
