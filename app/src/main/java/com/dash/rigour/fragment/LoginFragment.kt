@@ -71,11 +71,13 @@ class LoginFragment : Fragment() {
                         Toast.makeText(requireContext(), "Cant Login", Toast.LENGTH_SHORT).show()
                     }
             }
-            binding.signUp.setOnClickListener {
-                Navigation.findNavController(view)
-                    .navigate(R.id.action_loginFragment_to_signUpFragment)
-            }
 
+
+        }
+
+        binding.signUp.setOnClickListener {
+            Navigation.findNavController(view)
+                .navigate(R.id.action_loginFragment_to_signUpFragment)
         }
 
         return view
