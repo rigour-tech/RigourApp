@@ -39,6 +39,17 @@ const serviceCategories = [
   }
 ];
 
+const projectTypes = [
+  "Renovation",
+  "New Build",
+  "Repair",
+  "Maintenance",
+  "Installation",
+  "Landscaping",
+  "Interior Design",
+  "Exterior Work"
+];
+
 const ongoingProjects = [
   {
     id: 1,
@@ -50,7 +61,9 @@ const ongoingProjects = [
       avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=50&h=50&fit=crop&crop=face"
     },
     completion: "in 3 days",
-    progress: 75
+    progress: 75,
+    type: "Renovation",
+    category: "wood_works"
   }
 ];
 
@@ -84,12 +97,78 @@ const discoverItems = [
   }
 ];
 
+const sampleProviders = [
+  {
+    id: 1,
+    name: "Adebayo Olanrewaju",
+    profession: "Master Electrician",
+    avatar: "https://images.pexels.com/photos/8486973/pexels-photo-8486973.jpeg",
+    rating: 4.9,
+    completedProjects: 127,
+    verified: true,
+    eta: "15 mins",
+    location: { lat: 6.5244, lng: 3.3792 },
+    category: "mechanical_electrical",
+    hourlyRate: 5500,
+    skills: ["Wiring", "Circuit Installation", "Solar Systems"]
+  },
+  {
+    id: 2,
+    name: "Fatima Aliyu",
+    profession: "Interior Designer",
+    avatar: "https://images.unsplash.com/photo-1494790108755-2616b332c98c?w=50&h=50&fit=crop&crop=face",
+    rating: 4.8,
+    completedProjects: 89,
+    verified: true,
+    eta: "22 mins",
+    location: { lat: 6.5344, lng: 3.3892 },
+    category: "wood_works",
+    hourlyRate: 4200,
+    skills: ["Interior Design", "Space Planning", "Furniture Selection"]
+  },
+  {
+    id: 3,
+    name: "Chinedu Okoro",
+    profession: "Mason & Contractor",
+    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=50&h=50&fit=crop&crop=face",
+    rating: 4.7,
+    completedProjects: 156,
+    verified: true,
+    eta: "18 mins",
+    location: { lat: 6.5144, lng: 3.3692 },
+    category: "masonry",
+    hourlyRate: 3800,
+    skills: ["Brickwork", "Concrete", "Foundation"]
+  }
+];
+
 const App = () => {
   const [activeTab, setActiveTab] = useState('home');
+  const [currentScreen, setCurrentScreen] = useState('home');
   const [expandedCategory, setExpandedCategory] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userName, setUserName] = useState('Regal');
+  
+  // Project creation states
+  const [projectData, setProjectData] = useState({
+    title: '',
+    type: '',
+    description: '',
+    images: [],
+    documents: [],
+    budget: '',
+    location: ''
+  });
+  
+  // Service provider matching states
+  const [selectedProject, setSelectedProject] = useState('');
+  const [smartMatch, setSmartMatch] = useState(true);
+  const [selectedCategory, setSelectedCategory] = useState('');
+  const [scheduleTime, setScheduleTime] = useState('');
+  const [customFilter, setCustomFilter] = useState('');
+  const [filteredProviders, setFilteredProviders] = useState(sampleProviders);
+  const [selectedProvider, setSelectedProvider] = useState(null);
 
   useEffect(() => {
     // Test backend connection
@@ -116,6 +195,378 @@ const App = () => {
     setIsLoggedIn(false);
   };
 
+  const handleStartProject = () => {
+    setCurrentScreen('project-creation');
+  };
+
+  const handleFileUpload = (event, type) => {
+    const files = Array.from(event.target.files);
+    if (type === 'images') {
+      // Convert to base64 for preview
+      files.forEach(file => {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          setProjectData(prev => ({
+            ...prev,
+            images: [...prev.images, { file, preview: e.target.result, name: file.name }]
+          }));
+        };
+        reader.readAsDataURL(file);
+      });
+    } else if (type === 'documents') {
+      setProjectData(prev => ({
+        ...prev,
+        documents: [...prev.documents, ...files]
+      }));
+    }
+  };
+
+  const removeFile = (index, type) => {
+    setProjectData(prev => ({
+      ...prev,
+      [type]: prev[type].filter((_, i) => i !== index)
+    }));
+  };
+
+  const handleChooseProvider = () => {
+    setCurrentScreen('provider-matching');
+  };
+
+  const handleFilterProviders = () => {
+    let filtered = sampleProviders;
+    
+    if (selectedCategory) {
+      filtered = filtered.filter(provider => provider.category === selectedCategory);
+    }
+    
+    if (searchQuery) {
+      filtered = filtered.filter(provider => 
+        provider.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        provider.profession.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        provider.skills.some(skill => skill.toLowerCase().includes(searchQuery.toLowerCase()))
+      );
+    }
+    
+    setFilteredProviders(filtered);
+    if (filtered.length > 0) {
+      setSelectedProvider(filtered[0]);
+    }
+  };
+
+  const handleSendRequest = async () => {
+    if (!selectedProvider || !selectedProject) return;
+    
+    try {
+      // Create project if it doesn't exist
+      const projectResponse = await axios.post(`${API}/projects`, {
+        title: projectData.title || `Project with ${selectedProvider.name}`,
+        description: projectData.description || `${selectedProvider.profession} service`,
+        client_id: "client_123", // This would come from auth
+        category: selectedProvider.category,
+        budget: parseFloat(projectData.budget) || null,
+        location: projectData.location || "Lagos, Nigeria",
+        images: projectData.images.map(img => img.preview)
+      });
+      
+      alert(`Request sent to ${selectedProvider.name}! Project created successfully.`);
+      setCurrentScreen('home');
+    } catch (error) {
+      console.error('Error sending request:', error);
+      alert('Error sending request. Please try again.');
+    }
+  };
+
+  // Project Creation Screen
+  const ProjectCreationScreen = () => (
+    <div className="project-creation-screen">
+      <div className="header">
+        <button className="back-btn" onClick={() => setCurrentScreen('home')}>
+          ← Back
+        </button>
+        <h1>Create New Project</h1>
+      </div>
+      
+      <div className="project-form">
+        <div className="form-group">
+          <label>Project Title</label>
+          <input
+            type="text"
+            placeholder="Enter project title"
+            value={projectData.title}
+            onChange={(e) => setProjectData(prev => ({ ...prev, title: e.target.value }))}
+            className="form-input"
+          />
+        </div>
+        
+        <div className="form-group">
+          <label>Project Type</label>
+          <select
+            value={projectData.type}
+            onChange={(e) => setProjectData(prev => ({ ...prev, type: e.target.value }))}
+            className="form-select"
+          >
+            <option value="">Select project type</option>
+            {projectTypes.map(type => (
+              <option key={type} value={type}>{type}</option>
+            ))}
+          </select>
+        </div>
+        
+        <div className="form-group">
+          <label>Project Description</label>
+          <textarea
+            placeholder="Describe the current condition of your site and the work you want done..."
+            value={projectData.description}
+            onChange={(e) => setProjectData(prev => ({ ...prev, description: e.target.value }))}
+            className="form-textarea"
+            rows="4"
+          />
+        </div>
+        
+        <div className="form-group">
+          <label>Budget (₦)</label>
+          <input
+            type="number"
+            placeholder="Enter estimated budget"
+            value={projectData.budget}
+            onChange={(e) => setProjectData(prev => ({ ...prev, budget: e.target.value }))}
+            className="form-input"
+          />
+        </div>
+        
+        <div className="form-group">
+          <label>Location</label>
+          <input
+            type="text"
+            placeholder="Enter project location"
+            value={projectData.location}
+            onChange={(e) => setProjectData(prev => ({ ...prev, location: e.target.value }))}
+            className="form-input"
+          />
+        </div>
+        
+        <div className="form-group">
+          <label>Upload Images</label>
+          <div className="upload-section">
+            <input
+              type="file"
+              multiple
+              accept="image/*"
+              onChange={(e) => handleFileUpload(e, 'images')}
+              className="file-input"
+              id="images-upload"
+            />
+            <label htmlFor="images-upload" className="upload-btn">
+              📷 Choose Images
+            </label>
+            <div className="image-previews">
+              {projectData.images.map((img, index) => (
+                <div key={index} className="image-preview">
+                  <img src={img.preview} alt="Preview" />
+                  <button
+                    className="remove-btn"
+                    onClick={() => removeFile(index, 'images')}
+                  >
+                    ×
+                  </button>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+        
+        <div className="form-group">
+          <label>Upload Documents</label>
+          <div className="upload-section">
+            <input
+              type="file"
+              multiple
+              accept=".pdf,.doc,.docx,.txt"
+              onChange={(e) => handleFileUpload(e, 'documents')}
+              className="file-input"
+              id="documents-upload"
+            />
+            <label htmlFor="documents-upload" className="upload-btn">
+              📄 Choose Documents
+            </label>
+            <div className="document-list">
+              {projectData.documents.map((doc, index) => (
+                <div key={index} className="document-item">
+                  <span className="document-name">{doc.name}</span>
+                  <button
+                    className="remove-btn"
+                    onClick={() => removeFile(index, 'documents')}
+                  >
+                    ×
+                  </button>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+        
+        <button className="choose-provider-btn" onClick={handleChooseProvider}>
+          Choose a Service Provider
+        </button>
+      </div>
+    </div>
+  );
+
+  // Service Provider Matching Screen
+  const ProviderMatchingScreen = () => (
+    <div className="provider-matching-screen">
+      <div className="header">
+        <button className="back-btn" onClick={() => setCurrentScreen('project-creation')}>
+          ← Back
+        </button>
+        <h1>Find Service Provider</h1>
+      </div>
+      
+      <div className="matching-form">
+        <div className="form-group">
+          <label>Select Project</label>
+          <select
+            value={selectedProject}
+            onChange={(e) => setSelectedProject(e.target.value)}
+            className="form-select"
+          >
+            <option value="">Choose a project</option>
+            <option value="current">Current Project: {projectData.title || 'New Project'}</option>
+            {ongoingProjects.map(project => (
+              <option key={project.id} value={project.id}>{project.title}</option>
+            ))}
+          </select>
+        </div>
+        
+        <div className="smart-match">
+          <label className="checkbox-label">
+            <input
+              type="checkbox"
+              checked={smartMatch}
+              onChange={(e) => setSmartMatch(e.target.checked)}
+            />
+            <span className="checkmark"></span>
+            Recommend list of services for my project
+          </label>
+        </div>
+        
+        <div className="filters-section">
+          <h3>Filters</h3>
+          
+          <div className="form-group">
+            <label>Category</label>
+            <select
+              value={selectedCategory}
+              onChange={(e) => setSelectedCategory(e.target.value)}
+              className="form-select"
+            >
+              <option value="">All Categories</option>
+              <option value="mechanical_electrical">Mechanical & Electrical</option>
+              <option value="wood_works">Wood Works & Finishing</option>
+              <option value="masonry">Masonry</option>
+              <option value="environmental">Environmental & Specialized</option>
+              <option value="logistics">Logistics & Machineries</option>
+            </select>
+          </div>
+          
+          <div className="form-group">
+            <label>Schedule Time</label>
+            <input
+              type="datetime-local"
+              value={scheduleTime}
+              onChange={(e) => setScheduleTime(e.target.value)}
+              className="form-input"
+            />
+          </div>
+          
+          <div className="form-group">
+            <label>Custom Filter</label>
+            <select
+              value={customFilter}
+              onChange={(e) => setCustomFilter(e.target.value)}
+              className="form-select"
+            >
+              <option value="">Additional filters</option>
+              <option value="rating">Highest Rated</option>
+              <option value="price">Lowest Price</option>
+              <option value="distance">Nearest</option>
+              <option value="experience">Most Experienced</option>
+            </select>
+          </div>
+          
+          <button className="filter-btn" onClick={handleFilterProviders}>
+            Filter Service Providers
+          </button>
+        </div>
+        
+        {selectedProvider && (
+          <div className="provider-preview">
+            <h3>Recommended Provider</h3>
+            <div className="provider-card">
+              <div className="provider-header">
+                <img src={selectedProvider.avatar} alt={selectedProvider.name} className="provider-avatar" />
+                <div className="provider-info">
+                  <h4>{selectedProvider.name}</h4>
+                  {selectedProvider.verified && <span className="verified-badge">✓ Verified</span>}
+                  <p className="provider-profession">{selectedProvider.profession}</p>
+                </div>
+              </div>
+              
+              <div className="provider-stats">
+                <div className="stat">
+                  <span className="stat-value">{selectedProvider.rating}</span>
+                  <span className="stat-label">Rating</span>
+                </div>
+                <div className="stat">
+                  <span className="stat-value">{selectedProvider.completedProjects}</span>
+                  <span className="stat-label">Projects</span>
+                </div>
+                <div className="stat">
+                  <span className="stat-value">{selectedProvider.eta}</span>
+                  <span className="stat-label">ETA</span>
+                </div>
+              </div>
+              
+              <div className="provider-actions">
+                <button className="chat-btn">💬 Chat</button>
+                <button className="call-btn">📞 Call</button>
+              </div>
+              
+              <div className="provider-skills">
+                <h5>Skills:</h5>
+                <div className="skills-list">
+                  {selectedProvider.skills.map((skill, index) => (
+                    <span key={index} className="skill-tag">{skill}</span>
+                  ))}
+                </div>
+              </div>
+              
+              <div className="provider-rate">
+                <span className="rate-label">Hourly Rate:</span>
+                <span className="rate-value">₦{selectedProvider.hourlyRate.toLocaleString()}</span>
+              </div>
+            </div>
+          </div>
+        )}
+        
+        <div className="map-section">
+          <h3>Location</h3>
+          <div className="map-placeholder">
+            <div className="map-content">
+              <div className="location-pin user-pin">📍 Your Location</div>
+              <div className="location-pin provider-pin">🔧 Provider Location</div>
+              <p className="map-info">Interactive map showing provider locations</p>
+            </div>
+          </div>
+        </div>
+        
+        <button className="send-request-btn" onClick={handleSendRequest}>
+          Send Request
+        </button>
+      </div>
+    </div>
+  );
+
   const HomeScreen = () => (
     <div className="home-screen">
       {/* Header */}
@@ -138,7 +589,7 @@ const App = () => {
       {/* Main Content */}
       <div className="main-content">
         {/* Start New Project Button */}
-        <button className="start-project-btn">
+        <button className="start-project-btn" onClick={handleStartProject}>
           Start new Project
         </button>
 
@@ -363,7 +814,11 @@ const App = () => {
   );
 
   const renderScreen = () => {
-    switch(activeTab) {
+    switch(currentScreen) {
+      case 'project-creation':
+        return <ProjectCreationScreen />;
+      case 'provider-matching':
+        return <ProviderMatchingScreen />;
       case 'home':
         return <HomeScreen />;
       case 'projects':
@@ -385,44 +840,46 @@ const App = () => {
         {renderScreen()}
       </div>
       
-      {/* Bottom Navigation */}
-      <div className="bottom-nav">
-        <button 
-          className={`nav-item ${activeTab === 'home' ? 'active' : ''}`}
-          onClick={() => setActiveTab('home')}
-        >
-          <span className="nav-icon">🏠</span>
-          <span className="nav-label">Home</span>
-        </button>
-        <button 
-          className={`nav-item ${activeTab === 'projects' ? 'active' : ''}`}
-          onClick={() => setActiveTab('projects')}
-        >
-          <span className="nav-icon">📋</span>
-          <span className="nav-label">My Projects</span>
-        </button>
-        <button 
-          className={`nav-item ${activeTab === 'chats' ? 'active' : ''}`}
-          onClick={() => setActiveTab('chats')}
-        >
-          <span className="nav-icon">💬</span>
-          <span className="nav-label">My Chats</span>
-        </button>
-        <button 
-          className={`nav-item ${activeTab === 'support' ? 'active' : ''}`}
-          onClick={() => setActiveTab('support')}
-        >
-          <span className="nav-icon">🛠️</span>
-          <span className="nav-label">Support</span>
-        </button>
-        <button 
-          className={`nav-item ${activeTab === 'profile' ? 'active' : ''}`}
-          onClick={() => setActiveTab('profile')}
-        >
-          <span className="nav-icon">👤</span>
-          <span className="nav-label">Profile</span>
-        </button>
-      </div>
+      {/* Bottom Navigation - only show on main screens */}
+      {['home', 'projects', 'chats', 'support', 'profile'].includes(currentScreen) && (
+        <div className="bottom-nav">
+          <button 
+            className={`nav-item ${currentScreen === 'home' ? 'active' : ''}`}
+            onClick={() => setCurrentScreen('home')}
+          >
+            <span className="nav-icon">🏠</span>
+            <span className="nav-label">Home</span>
+          </button>
+          <button 
+            className={`nav-item ${currentScreen === 'projects' ? 'active' : ''}`}
+            onClick={() => setCurrentScreen('projects')}
+          >
+            <span className="nav-icon">📋</span>
+            <span className="nav-label">My Projects</span>
+          </button>
+          <button 
+            className={`nav-item ${currentScreen === 'chats' ? 'active' : ''}`}
+            onClick={() => setCurrentScreen('chats')}
+          >
+            <span className="nav-icon">💬</span>
+            <span className="nav-label">My Chats</span>
+          </button>
+          <button 
+            className={`nav-item ${currentScreen === 'support' ? 'active' : ''}`}
+            onClick={() => setCurrentScreen('support')}
+          >
+            <span className="nav-icon">🛠️</span>
+            <span className="nav-label">Support</span>
+          </button>
+          <button 
+            className={`nav-item ${currentScreen === 'profile' ? 'active' : ''}`}
+            onClick={() => setCurrentScreen('profile')}
+          >
+            <span className="nav-icon">👤</span>
+            <span className="nav-label">Profile</span>
+          </button>
+        </div>
+      )}
     </div>
   );
 };
